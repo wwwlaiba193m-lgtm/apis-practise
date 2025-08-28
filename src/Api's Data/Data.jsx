@@ -13,7 +13,7 @@ export default class Data extends Component {
     };
   }
   async componentDidMount() {
-    let url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=ce969f7360cb47668f5a9a0ec5b6326d&pageSize=${this.props.pageSize}&page=${this.state.page}`;
+    let url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=ce969f7360cb47668f5a9a0ec5b6326d&pageSize=${this.props.pageSize}&page=${this.state.page}&category=${this.props.request}`;
     let data = await fetch(url);
     let getdata = await data.json();
     console.log(getdata);
@@ -28,7 +28,7 @@ export default class Data extends Component {
       this.setState({ loading: false });
       let url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=ce969f7360cb47668f5a9a0ec5b6326d&pageSize=${
         this.props.pageSize
-      }&page=${this.state.page + 1}`;
+      }&page=${this.state.page + 1}&category=${this.props.request}`;
       let data = await fetch(url);
       let getdata = await data.json();
       this.setState({
@@ -41,7 +41,7 @@ export default class Data extends Component {
       this.setState({ loading: false });
       let url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=ce969f7360cb47668f5a9a0ec5b6326d&pageSize=${
         this.props.pageSize
-      }&page=${this.state.page - 1}`;
+      }&page=${this.state.page - 1}&category=${this.props.request}`;
       let data = await fetch(url);
       let getdata = await data.json();
       this.setState({
@@ -56,7 +56,7 @@ console.log("hello")
       <>
     
         <h3>
-          Page Number = {this.state.page} from totla page {totalPages}
+          Page Number = {this.state.page} from total page {totalPages}
         </h3>
         <div className="container">
           {this.state.loading == false ? (
